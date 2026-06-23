@@ -25,6 +25,9 @@ Bem-vindo ao vault de pesquisa sobre **Arquitetura de Interfaces de Linha de Com
 - [[Boas-Praticas]] — UX de terminal, idempotência, detecção de TTY, 12-factor
 - [[Metodologia]] — Roteiro metodológico para desenvolvimento de uma CLI
 
+### Seção 5 — Fronteiras e Tendências
+- [[IA-CLI]] — Interseção entre IA e CLI, LLMs, agentes autônomos e desafios de segurança
+
 ### Apêndice
 - [[Referencias]] — Fontes e referências utilizadas
 
