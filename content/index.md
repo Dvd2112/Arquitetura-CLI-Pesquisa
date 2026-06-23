@@ -26,7 +26,8 @@ Bem-vindo ao vault de pesquisa sobre **Arquitetura de Interfaces de Linha de Com
 - [[Metodologia]] — Roteiro metodológico para desenvolvimento de uma CLI
 
 ### Seção 5 — Fronteiras e Tendências
-- [[IA-CLI]] — Interseção entre IA e CLI, LLMs, agentes autônomos e desafios de segurança
+- [[IA-CLI]] — Interseção entre IA e CLI, LLMs, estudos de caso, tabela comparativa de ferramentas
+- [[Guia-Pratico-CLI-Ollama]] — Tutorial completo: construa sua própria CLI com IA local (Ollama + Python)
 
 ### Apêndice
 - [[Referencias]] — Fontes e referências utilizadas
