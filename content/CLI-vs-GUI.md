@@ -1,38 +1,72 @@
 ---
-title: CLI vs GUI
-description: Comparação entre interface de linha de comando e gráfica
+title: Casos de Uso Modernos
+description: Casos de uso modernos, modos de operação e comparação CLI vs GUI
 ---
 
-# CLI vs GUI
+# Casos de Uso Modernos e Modos de Operação
 
-## Comparação
+Em Sistemas de Informação modernos, a CLI não concorre com a GUI — elas atendem a públicos e propósitos distintos. Enquanto a GUI foca na experiência do usuário final e na facilidade de aprendizado, a CLI foca na **produtividade do especialista**, **reprodutibilidade** e **automação**.
+
+## Comparação CLI vs GUI
 
 | Aspecto | CLI | GUI |
 |---------|-----|-----|
-| **Velocidade** | Alta (teclado) | Média (mouse+teclado) |
+| **Velocidade de operação** | Alta (teclado) | Média (mouse+teclado) |
 | **Curva de aprendizado** | Ingreme | Suave |
-| **Automação** | Excelente (scripts) | Limitada |
+| **Automação** | Excelente (scripts, pipes) | Limitada (macros, RPA) |
 | **Acessibilidade** | Leitores de tela | Depende do toolkit |
-| **Recursos** | Mínimos | Altos (memória/GPU) |
-| **Descoberta** | `--help`, man pages | Menus visuais |
+| **Recursos de sistema** | Mínimos | Altos (memória, GPU) |
+| **Descoberta de funções** | `--help`, man pages | Menus visuais |
 | **Composição** | Pipes (`\|`) | Clipboard manual |
-| **Remoto** | SSH nativo | RDP/VNC pesado |
+| **Operação remota** | SSH nativo | RDP/VNC pesado |
+| **Auditabilidade** | Logs de comando nativos | Complexa |
 
-## Quando usar CLI
+## Principais Casos de Uso na Indústria
 
-- Automação e CI/CD
-- Servidores e ambientes headless
-- Usuários avançados/power users
-- Ferramentas de desenvolvimento
-- Processamento em lote
+### Cultura DevOps e Pipelines de CI/CD
 
-## Quando usar GUI
+Ferramentas de Integração e Entrega Contínuas (como GitHub Actions, Jenkins ou GitLab CI) não utilizam interfaces gráficas. Elas utilizam **imagens Docker** e **scripts CLI** para buildar, testar e implantar código em ambientes de produção.
 
-- Usuários não-técnicos
-- Manipulação visual (design, imagem)
-- Descoberta de funcionalidades
-- Multitarefa visual
+### Orquestração e Computação em Nuvem (IaC)
 
-> [[Ferramentas-Populares|CLIs modernas]] estão cada vez mais incorporando elementos visuais (cores, gráficos no terminal) — a linha entre CLI e GUI está se tornando mais tênue.
+Gerenciar milhares de instâncias de servidores virtuais na AWS, Google Cloud ou Azure através de cliques em um painel web é inviável. A CLI permite criar, modificar e destruir infraestruturas complexas com poucas linhas de comando — **Infraestrutura como Código (IaC)** com ferramentas como Terraform, Pulumi e AWS CLI.
+
+### Gestão de Dependências e Pacotes
+
+Desenvolvedores utilizam CLIs diariamente para gerenciar bibliotecas através de ecossistemas como **NPM** (JavaScript), **Pip** (Python), **Cargo** (Rust) ou **Maven** (Java).
+
+## Modos de Utilização de uma CLI
+
+Uma aplicação CLI pode operar de três maneiras fundamentais:
+
+### 1. Modo Interativo
+
+O programa inicia e solicita inputs contínuos do usuário (perguntas sim/não, digitação de senhas ocultas, menus interativos).
+
+```
+$ npm init
+package name: (my-project) meu-pacote
+version: (1.0.0) 0.1.0
+description: Pacote exemplo
+```
+
+### 2. Modo Não-Interativo (Batch)
+
+O comando é executado com todos os argumentos fornecidos de uma vez, processa os dados e encerra sem exigir interação humana. É o modo ideal para **cronjobs** e pipelines de CI/CD.
+
+```bash
+$ npm init --yes
+$ docker build --tag app:latest .
+```
+
+### 3. Encadeamento de Fluxos (Piping)
+
+Utilizando o operador de pipe (`|`), a saída padrão (**stdout**) de uma CLI é diretamente injetada como entrada padrão (**stdin**) de outra ferramenta.
+
+```bash
+$ docker ps --format '{{.Names}}' | grep "api" | xargs docker logs
+```
+
+> [[Ferramentas-Populares|CLIs modernas]] estão cada vez mais incorporando elementos visuais — a linha entre CLI e GUI está se tornando mais tênue.
 
 Voltar para [[index|página inicial]].
