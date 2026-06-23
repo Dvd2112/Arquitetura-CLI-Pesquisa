@@ -27,6 +27,7 @@ Bem-vindo ao vault de pesquisa sobre **Arquitetura de Interfaces de Linha de Com
 
 ### Seção 5 — Fronteiras e Tendências
 - [[IA-CLI]] — Interseção entre IA e CLI, LLMs, estudos de caso, tabela comparativa de ferramentas
+- [[Estudo-Caso-OpenCode]] — Análise aprofundada do OpenCode como CLI agêntica com IA
 - [[Guia-Pratico-CLI-Ollama]] — Tutorial completo: construa sua própria CLI com IA local (Ollama + Python)
 
 ### Apêndice
