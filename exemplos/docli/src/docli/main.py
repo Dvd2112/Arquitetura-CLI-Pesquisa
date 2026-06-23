@@ -9,10 +9,13 @@ import typer
 from rich.console import Console
 from rich.table import Table
 from rich.panel import Panel
+from rich.live import Live
 from pathlib import Path
 from datetime import datetime
 import subprocess
 import json
+import time
+import shutil
 
 app = typer.Typer(no_args_is_help=True)
 console = Console()
@@ -31,6 +34,38 @@ def _save_config(path: Path, cfg: dict):
     cfg_path = path / CONFIG_FILE
     cfg_path.parent.mkdir(parents=True, exist_ok=True)
     cfg_path.write_text(json.dumps(cfg, indent=2))
+
+
+_BUDDHA = [
+    "⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣶⣦⡀",
+    "⠀⢠⣿⣿⡿⠀⠀⠈⢹⣿⣿⡿⣿⣿⣇⠀⣠⣿⣿⠟⣽⣿⣿⠇⠀⠀⢹⣿⣿⣿",
+    "⠀⢸⣿⣿⡇⠀⢀⣠⣾⣿⡿⠃⢹⣿⣿⣶⣿⡿⠋⢰⣿⣿⡿⠀⠀⣠⣼⣿⣿⠏",
+    "⠀⣿⣿⣿⣿⣿⣿⠿⠟⠋⠁⠀⠀⢿⣿⣿⠏⠀⠀⢸⣿⣿⣿⣿⣿⡿⠟⠋⠁⠀",
+    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣸⣟⣁⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+    "⣠⣴⣶⣾⣿⣿⣻⡟⣻⣿⢻⣿⡟⣛⢻⣿⡟⣛⣿⡿⣛⣛⢻⣿⣿⣶⣦⣄⡀⠀",
+    "⠉⠛⠻⠿⠿⠿⠷⣼⣿⣿⣼⣿⣧⣭⣼⣿⣧⣭⣿⣿⣬⡭⠾⠿⠿⠿⠛⠉⠀",
+]
+
+_COLORS = ["red", "yellow", "green", "cyan", "blue", "magenta", "white"]
+
+
+def _splash(segundos: float = 1.5):
+    """Mostra animação do Buddha em loop com alternância de cores."""
+    cols = shutil.get_terminal_size().columns
+    frames = []
+    for i, line in enumerate(_BUDDHA):
+        frames.append(line.center(cols))
+    n = len(frames)
+    with Live(refresh_per_second=10, transient=True) as live:
+        for t in range(int(segundos * 10)):
+            idx = t % n
+            cor = _COLORS[(t // n) % len(_COLORS)]
+            rendered = "\n".join(
+                f"[{cor}]{line}[/]" if i == idx else f"[dim]{line}[/]"
+                for i, line in enumerate(frames)
+            )
+            live.update(rendered)
+            time.sleep(0.1)
 
 
 def _git_diff(path: Path) -> str:
@@ -65,6 +100,14 @@ def _git_log_recent(path: Path, n: int = 5) -> str:
 
 
 @app.command()
+def splash(
+    segundos: float = typer.Option(3.0, "--time", "-t", help="Duração da animação"),
+):
+    """Mostra a animação do Buddha em loop."""
+    _splash(segundos)
+
+
+@app.command()
 def init(
     output: str = typer.Argument(
         ..., help="Caminho onde os .md serão salvos (ex: docs/ ou documentacao/)"
@@ -92,6 +135,8 @@ def document(
     Mostra as diferenças, pede uma descrição e cria o documento.
     """
     path = Path.cwd()
+
+    _splash(1.2)
 
     # 1. Carrega config
     cfg = _load_config(path)

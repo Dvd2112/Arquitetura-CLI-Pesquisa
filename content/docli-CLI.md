@@ -19,6 +19,15 @@ pip install -e exemplos/docli/
 docli --help
 ```
 
+## Comandos
+
+| Comando | Descrição |
+|---------|-----------|
+| `docli init <caminho>` | Configura diretório de saída dos .md |
+| `docli document` | Gera .md a partir do git diff (com animação 🧘) |
+| `docli splash` | Mostra animação do Buddha em loop |
+| `docli log` | Lista documentos gerados |
+
 ## Fluxo de Uso
 
 ### 1. `docli init` — Configurar caminho de saída
