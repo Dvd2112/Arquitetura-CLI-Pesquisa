@@ -31,6 +31,7 @@ Bem-vindo ao vault de pesquisa sobre **Arquitetura de Interfaces de Linha de Com
 - [[Guia-Pratico-CLI-Ollama]] — Tutorial completo: construa sua própria CLI com IA local (Ollama + Python)
 
 ### Apêndice
+- [[docli-CLI]] — docli: implementação prática de uma CLI básica com test harness
 - [[Referencias]] — Fontes e referências utilizadas
 
 ## 🎯 Objetivo
