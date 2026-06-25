@@ -1,0 +1,2 @@
+[console_scripts]
+docli = docli.main:app

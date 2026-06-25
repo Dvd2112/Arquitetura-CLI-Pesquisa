@@ -1,0 +1,13 @@
+pyproject.toml
+src/docli/__init__.py
+src/docli/analyzer.py
+src/docli/docstore.py
+src/docli/harness.py
+src/docli/main.py
+src/docli.egg-info/PKG-INFO
+src/docli.egg-info/SOURCES.txt
+src/docli.egg-info/dependency_links.txt
+src/docli.egg-info/entry_points.txt
+src/docli.egg-info/requires.txt
+src/docli.egg-info/top_level.txt
+tests/test_harness.py
